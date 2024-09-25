@@ -1,0 +1,51 @@
+body {
+    background: linear-gradient(to bottom, #ff5e00, #ffcc70);
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+}
+
+.logo {
+    font-size: 2rem;
+    color: #ffeb3b;
+    margin-top: 20px;
+}
+
+.btn-custom {
+    background-color: #ffeb3b;
+    color: #000;
+    border: none;
+    margin: 10px;
+}
+
+.food-gallery img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.food-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.main-title {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+}
+
+.header-buttons {
+    margin-top: 30px;
+}
+
+.container-custom {
+    max-width: 1200px;
+}
+
+.header {
+    text-align: center;
+}
