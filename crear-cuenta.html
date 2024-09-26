@@ -29,10 +29,13 @@
                     <input type="password" class="form-control" placeholder="Repetir Contraseña" required>
                 </div>
                 <div class="mb-3">
-                    <input type="text" class="form-control" placeholder="Rol" required>
+                    <input type="email" class="form-control" placeholder="Correo de Recuperación" required>
                 </div>
                 <div class="mb-3">
-                    <input type="email" class="form-control" placeholder="Correo de Recuperación" required>
+                    <select id="Rol" name="Rol">
+                        <option value="administrador" selected>Administrador</option>
+                        <option value="cajero">cajero</option>
+                      </select>
                 </div>
                 <button type="submit" class="btn btn-custom">Crear Cuenta</button>
             </form>
