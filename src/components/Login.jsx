@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Importa useNavigate
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase-config";
-import "../App.css"; // Asegúrate de que esté importando los estilos correctos
+import "../App.css"; 
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -15,7 +15,7 @@ const Login = () => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      alert("Usuario registrado correctamente");
+      handleRedirectToCajero();
     } catch (error) {
       setError(error.message);
     }
@@ -24,6 +24,11 @@ const Login = () => {
   const handleRedirectToRegister = () => {
     // Redirige al componente de registro
     navigate("/registro");
+  };
+
+  const handleRedirectToCajero = () => {
+    // Redirige al componente de registro
+    navigate("/cajero");
   };
 
   return (

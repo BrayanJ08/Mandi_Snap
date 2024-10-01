@@ -6,6 +6,7 @@ import { auth } from "./firebase-config";
 import Login from "./components/Login";
 import Registro from "./components/Registro";
 import Principal from "./components/Principal";
+import Cajero from "./components/Cajero"
 import "./App.css";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path="/" element={<Principal />} />
         <Route path="/registro" element={<Registro />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/cajero" element={<Cajero />} />
       </Routes>
     </Router>
   );
