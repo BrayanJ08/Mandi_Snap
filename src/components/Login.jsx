@@ -65,7 +65,7 @@ const Login = () => {
             checked={validacion}
             onChange={(e) => setValidacion(e.target.checked)}
           /> */}
-            <label>Validación de cuenta</label>
+            {/* <label>Validación de cuenta</label> */}
           </div>
         }
         {error && <p style={{ color: "red" }}>{error}</p>}
