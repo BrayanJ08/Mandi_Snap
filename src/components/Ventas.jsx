@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import "../components.css/style.css"
 const Ventas = () => {
   const [productos, setProductos] = useState([
     { nombre: 'Hamburguesas', valorUnitario: 5000 },
