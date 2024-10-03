@@ -9,7 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  // Hook para navegar entre rutas
+  // Se utiliza el hook para navegar entre las rutas
   const navigate = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -22,14 +22,16 @@ const Login = () => {
   };
 
   const handleRedirectToRegister = () => {
-    // Redirige al componente de registro
     navigate("/registro");
   };
 
   const handleRedirectToCajero = () => {
-    // Redirige al componente de registro
     navigate("/cajero");
   };
+
+/*   const handleRedirectToAdministrador = () => { */
+/*     navigate("/administrador"); */
+/*   }; */      //Se esta pidiendo que den permisos para continuar como Administrador 
 
   return (
     <div className="login">
