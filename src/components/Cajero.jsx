@@ -7,6 +7,9 @@ const Cajero = () => {
   const handleGastosClick = () => {
     navigate("/gastos");
   };
+  const handleVentasClick = () => {
+    navigate("/ventas");
+  };
 
   return (
     <div className="cajero-page">
@@ -30,7 +33,7 @@ const Cajero = () => {
 
         <div className="buttons">
           <button onClick={handleGastosClick}>Gastos</button>
-          <button>Ventas</button>
+          <button onClick={handleVentasClick}>Ventas</button>
         </div>
       </section>
     </div>
