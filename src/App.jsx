@@ -31,7 +31,7 @@ function App() {
         <Route path="/registro" element={<Registro />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cajero" element={<Cajero />} />
-        <Route path="/gastos" component={<Gastos />} />
+        <Route path="/gastos" element={<Gastos />} />
       </Routes>
     </Router>
   );

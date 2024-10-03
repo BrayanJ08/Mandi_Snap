@@ -1,4 +1,4 @@
-/* Estilo general */
+
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
@@ -12,14 +12,14 @@ body {
 
 .cajero-page {
   text-align: center;
-  width: 80%; /* Ajusta el ancho de la página para que no ocupe toda la pantalla */
-  margin: 0 auto; /* Centramos horizontalmente */
-  background-color: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
+  width: 80%; 
+  margin: 0 auto; 
+  background-color: rgba(255, 255, 255, 0.1); 
   padding: 20px;
   border-radius: 10px;
 }
 
-/* Estilo para encabezado y navegación */
+
 header {
   margin-bottom: 20px;
 }
@@ -51,7 +51,6 @@ h1, h2 {
   color: #fff;
 }
 
-/* Estilo para la galería de imágenes */
 .image-gallery {
   display: flex;
   justify-content: center;
@@ -65,7 +64,6 @@ h1, h2 {
   border-radius: 10px;
 }
 
-/* Estilo para botones */
 .buttons {
   display: flex;
   justify-content: center;
