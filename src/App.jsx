@@ -7,6 +7,7 @@ import Login from "./components/Login";
 import Registro from "./components/Registro";
 import Principal from "./components/Principal";
 import Cajero from "./components/Cajero"
+import Gastos from "./components/Gastos";
 import "./App.css";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path="/registro" element={<Registro />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cajero" element={<Cajero />} />
+        <Route path="/gastos" component={<Gastos />} />
       </Routes>
     </Router>
   );

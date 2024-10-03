@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase-config"; // Asegúrate de que la ruta sea correcta
-import "../App.css"; // Incluye los estilos aquí también
+import { auth } from "../firebase-config"; 
+import "../App.css"; 
 
 const Registro = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState(""); // Nueva variable de estado para confirmar la contraseña
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const [rol, setRol] = useState(""); // Estado para el rol
-  const [recuperacionEmail, setRecuperacionEmail] = useState(""); // Estado para el correo de recuperación
+  const [rol, setRol] = useState("");
+  const [recuperacionEmail, setRecuperacionEmail] = useState("");
 
   const handleRegistro = async (e) => {
     e.preventDefault();
-    // Validar que las contraseñas coincidan
     if (password !== confirmPassword) {
       setError("Las contraseñas no coinciden.");
       return;
@@ -38,8 +37,8 @@ const Registro = () => {
           <input
             type="text"
             name="usuario"
-            value={rol} // Cambié para que use el estado
-            onChange={(e) => setRol(e.target.value)} // Maneja el cambio
+            value={rol}
+            onChange={(e) => setRol(e.target.value)}
           />
         </div>
         <div className="form-group">
@@ -48,7 +47,7 @@ const Registro = () => {
             type="email"
             name="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)} // Maneja el cambio
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="form-group">
@@ -57,7 +56,7 @@ const Registro = () => {
             type="password"
             name="contraseña"
             value={password}
-            onChange={(e) => setPassword(e.target.value)} // Maneja el cambio
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <div className="form-group">
@@ -66,7 +65,7 @@ const Registro = () => {
             type="password"
             name="repetirContraseña"
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)} // Maneja el cambio
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </div>
         <div className="form-group">
@@ -75,7 +74,7 @@ const Registro = () => {
             type="email"
             name="correoRecuperacion"
             value={recuperacionEmail}
-            onChange={(e) => setRecuperacionEmail(e.target.value)} // Maneja el cambio
+            onChange={(e) => setRecuperacionEmail(e.target.value)}
           />
         </div>
         {error && <p style={{ color: "red" }}>{error}</p>}{" "}

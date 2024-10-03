@@ -1,8 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import "../App.css"; 
 
 const Cajero = () => {
+  const navigate = useNavigate();
+  const handleGastosClick = () => {
+    navigate("/gastos");
+  };
+
   return (
     <div className="cajero-page">
       <header>
@@ -24,7 +29,7 @@ const Cajero = () => {
        {/*  </div> */}
 
         <div className="buttons">
-          <button>Gastos</button>
+          <button onClick={handleGastosClick}>Gastos</button>
           <button>Ventas</button>
         </div>
       </section>

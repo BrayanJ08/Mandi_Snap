@@ -6,12 +6,10 @@ const Principal = () => {
   const navigate = useNavigate();
 
   const handleRedirectToRegister = () => {
-    // Redirige al componente de registro
     navigate("/registro");
   };
 
   const handleRedirectToLogin = () => {
-    // Redirige al componente de login
     navigate("/login");
   };
 
