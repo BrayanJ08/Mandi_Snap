@@ -2,29 +2,36 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Importa useNavigate
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase-config";
-import "../App.css"; // Asegúrate de que esté importando los estilos correctos
+import "../App.css"; 
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  // Hook para navegar entre rutas
+  // Se utiliza el hook para navegar entre las rutas
   const navigate = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      alert("Usuario registrado correctamente");
+      handleRedirectToCajero();
     } catch (error) {
       setError(error.message);
     }
   };
 
   const handleRedirectToRegister = () => {
-    // Redirige al componente de registro
     navigate("/registro");
   };
+
+  const handleRedirectToCajero = () => {
+    navigate("/cajero");
+  };
+
+/*   const handleRedirectToAdministrador = () => { */
+/*     navigate("/administrador"); */
+/*   }; */      //Se esta pidiendo que den permisos para continuar como Administrador 
 
   return (
     <div className="login">
@@ -60,7 +67,7 @@ const Login = () => {
             checked={validacion}
             onChange={(e) => setValidacion(e.target.checked)}
           /> */}
-            <label>Validación de cuenta</label>
+            {/* <label>Validación de cuenta</label> */}
           </div>
         }
         {error && <p style={{ color: "red" }}>{error}</p>}
