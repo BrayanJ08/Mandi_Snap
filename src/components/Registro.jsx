@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase-config"; 
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth, db } from "../firebase-config"; // Importa Firestore (db)
+import { doc, setDoc } from "firebase/firestore"; // Importa setDoc y doc
 import { useNavigate } from "react-router-dom";
-import "../App.css"; 
+import "../App.css";
 
 const Registro = () => {
   const navigate = useNavigate();
@@ -11,7 +12,9 @@ const Registro = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const [rol, setRol] = useState("");
+  const [nombre, setNombre] = useState(""); // Nuevo campo de nombre
+  const [apellido, setApellido] = useState(""); // Nuevo campo de apellido
+  const [direccion, setDireccion] = useState(""); // Nuevo campo de dirección
   const [recuperacionEmail, setRecuperacionEmail] = useState("");
 
   const handleRegistro = async (e) => {
@@ -22,8 +25,31 @@ const Registro = () => {
     }
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      // Crear el usuario con correo y contraseña
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+
+      // Actualizar el perfil del usuario con nombre y apellido
+      await updateProfile(user, {
+        displayName: `${nombre} ${apellido}`, // Almacena el nombre completo en el perfil del usuario
+      });
+
+      // Almacenar datos adicionales del usuario en Firestore
+      await setDoc(doc(db, "usuarios", user.uid), {
+        // Aquí se usa user.uid directamente
+        nombre,
+        apellido,
+        email,
+        direccion,
+        rol: null,
+      });
+
       alert("Usuario registrado correctamente");
+      navigate("/"); // Redirigir a la página principal o donde quieras
     } catch (error) {
       setError(error.message);
     }
@@ -42,12 +68,33 @@ const Registro = () => {
         <form onSubmit={handleRegistro} className="register-form">
           <h2>Registro de usuario</h2>
           <div className="form-group">
-            <label>Usuario</label>
+            <label>Nombre</label>
             <input
               type="text"
-              name="usuario"
-              value={rol}
-              onChange={(e) => setRol(e.target.value)}
+              name="nombre"
+              value={nombre}
+              onChange={(e) => setNombre(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Apellido</label>
+            <input
+              type="text"
+              name="apellido"
+              value={apellido}
+              onChange={(e) => setApellido(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Dirección</label>
+            <input
+              type="text"
+              name="direccion"
+              value={direccion}
+              onChange={(e) => setDireccion(e.target.value)}
+              required
             />
           </div>
           <div className="form-group">
@@ -57,6 +104,7 @@ const Registro = () => {
               name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
           <div className="form-group">
@@ -66,6 +114,7 @@ const Registro = () => {
               name="contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
           <div className="form-group">
@@ -75,6 +124,7 @@ const Registro = () => {
               name="repetirContraseña"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
+              required
             />
           </div>
           <div className="form-group">
@@ -84,10 +134,10 @@ const Registro = () => {
               name="correoRecuperacion"
               value={recuperacionEmail}
               onChange={(e) => setRecuperacionEmail(e.target.value)}
+              required
             />
           </div>
-          {error && <p style={{ color: "red" }}>{error}</p>}{" "}
-          {/* Muestra el error si existe */}
+          {error && <p style={{ color: "red" }}>{error}</p>}
           <button type="submit" className="btn">
             Registrarse
           </button>
