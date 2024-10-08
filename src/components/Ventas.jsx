@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import "../components.css/style.css"
 const Ventas = () => {
   const [productos, setProductos] = useState([
     { nombre: 'Hamburguesas', valorUnitario: 5000 },
@@ -36,6 +36,10 @@ const Ventas = () => {
   const agregarVenta = () => {
     setVentas([...ventas, { producto: null, cantidad: 0, total: 0 }]);
   };
+//agregar un hook ussefect
+  /* useEffect(() => { */
+    /* document.title = `Ventas Diarias - Total: ${setVentas}`;
+  }); */
 
   return (
     <div className="ventas-diarios">
