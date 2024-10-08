@@ -12,9 +12,9 @@ const Registro = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const [nombre, setNombre] = useState(""); // Nuevo campo de nombre
-  const [apellido, setApellido] = useState(""); // Nuevo campo de apellido
-  const [direccion, setDireccion] = useState(""); // Nuevo campo de dirección
+  const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState("");
+  const [direccion, setDireccion] = useState("");
   const [recuperacionEmail, setRecuperacionEmail] = useState("");
 
   const handleRegistro = async (e) => {
@@ -25,22 +25,8 @@ const Registro = () => {
     }
 
     try {
-      // Crear el usuario con correo y contraseña
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const user = userCredential.user;
-
-      // Actualizar el perfil del usuario con nombre y apellido
-      await updateProfile(user, {
-        displayName: `${nombre} ${apellido}`, // Almacena el nombre completo en el perfil del usuario
-      });
-
-      // Almacenar datos adicionales del usuario en Firestore
-      await setDoc(doc(db, "usuarios", user.uid), {
-        // Aquí se usa user.uid directamente
+      const tempUserId = `temp_${Date.now()}`; // Genera un ID temporal
+      await setDoc(doc(db, "usuarios", tempUserId), {
         nombre,
         apellido,
         email,
@@ -48,8 +34,33 @@ const Registro = () => {
         rol: null,
       });
 
+      // Si todo va bien, crea el usuario en Firebase Auth
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+
+      // Elimina el documento temporal después de crear el usuario correctamente
+      await setDoc(doc(db, "usuarios", user.uid), {
+        nombre,
+        apellido,
+        email,
+        direccion,
+        rol: null,
+      });
+
+      // Actualiza el perfil del usuario con nombre y apellido
+      await updateProfile(user, {
+        displayName: `${nombre} ${apellido}`,
+      });
+
+      // Elimina el registro temporal
+      await db.collection("usuarios").doc(tempUserId).delete();
+
       alert("Usuario registrado correctamente");
-      navigate("/"); // Redirigir a la página principal o donde quieras
+      navigate("/");
     } catch (error) {
       setError(error.message);
     }
