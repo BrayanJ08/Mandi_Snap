@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth, db } from "../firebase-config"; // Importa Firestore (db)
-import { doc, setDoc } from "firebase/firestore"; // Importa setDoc y doc
+import { auth, db } from "../firebase-config";
+import { doc, setDoc, deleteDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
@@ -19,13 +19,16 @@ const Registro = () => {
 
   const handleRegistro = async (e) => {
     e.preventDefault();
+
     if (password !== confirmPassword) {
       setError("Las contraseñas no coinciden.");
       return;
     }
 
+    const tempUserId = `temp_${Date.now()}`; // Genera un ID temporal
+
     try {
-      const tempUserId = `temp_${Date.now()}`; // Genera un ID temporal
+      // Intenta primero guardar la información en Firestore
       await setDoc(doc(db, "usuarios", tempUserId), {
         nombre,
         apellido,
@@ -34,7 +37,7 @@ const Registro = () => {
         rol: null,
       });
 
-      // Si todo va bien, crea el usuario en Firebase Auth
+      // Solo si no hubo errores en Firestore, se crea el usuario en Firebase Auth
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -42,7 +45,7 @@ const Registro = () => {
       );
       const user = userCredential.user;
 
-      // Elimina el documento temporal después de crear el usuario correctamente
+      // Almacenar la información completa en Firestore con el UID real
       await setDoc(doc(db, "usuarios", user.uid), {
         nombre,
         apellido,
@@ -51,18 +54,23 @@ const Registro = () => {
         rol: null,
       });
 
-      // Actualiza el perfil del usuario con nombre y apellido
+      // Actualizar el perfil del usuario con nombre y apellido
       await updateProfile(user, {
         displayName: `${nombre} ${apellido}`,
       });
 
-      // Elimina el registro temporal
-      await db.collection("usuarios").doc(tempUserId).delete();
+      // Eliminar el documento temporal
+      await deleteDoc(doc(db, "usuarios", tempUserId));
 
       alert("Usuario registrado correctamente");
       navigate("/");
     } catch (error) {
       setError(error.message);
+
+      // Si ocurre un error, eliminar el documento temporal
+      await deleteDoc(doc(db, "usuarios", tempUserId)).catch((err) => {
+        console.error("Error al eliminar el documento temporal:", err);
+      });
     }
   };
 
