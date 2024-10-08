@@ -154,5 +154,5 @@ td input, td select {
 
 
 .gastos-diarios  tr:hover {
-  background-color: #ec650a; /* Efecto hover en las filas */
+  background-color: #ec650a; /*El efecto hover se aprecia al pasar el cursor entre las celdas */
 }
