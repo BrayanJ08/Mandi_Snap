@@ -1,51 +1,51 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0;
-  }
-  
-  nav {
-    background-color: #333;
-    padding: 1rem;
-  }
-  
-  nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  nav ul li {
-    color: white;
-  }
-  
-  nav ul li a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    margin: auto;
-  }
-  
-  form input, form button {
-    margin: 0.5rem 0;
-    padding: 0.5rem;
-  }
-  
-  button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  /* Estilo para la tabla */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+nav {
+  background-color: #333;
+  padding: 1rem;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+nav ul li {
+  color: white;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: auto;
+}
+
+form input, form button {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+}
+
+button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+/* Estilo para la tabla */
 .ventas-diarios table {
   width: 100%;
   border-collapse: collapse;
@@ -86,6 +86,7 @@ body {
   cursor: pointer;
   font-size: 16px;
   margin-top: 20px;
+  display: block;
 }
 
 .ventas-diarios button:hover {
@@ -107,52 +108,54 @@ body {
   color: #000000;
 }
 
+
+
 .gastos-diarios {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f5ebeb;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+max-width: 800px;
+margin: 0 auto;
+padding: 20px;
+background-color: #f5ebeb;
+border-radius: 10px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #333; /* Cambia este color para el título */
+text-align: center;
+margin-bottom: 20px;
+font-size: 24px;
+color: #333; /* Cambia este color para el título */
 }
 
 table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
+width: 100%;
+border-collapse: collapse;
+margin-bottom: 20px;
 }
 
 th, td {
-  text-align: center;
-  padding: 10px;
-  border: 1px solid #000000;
-  color: #000000; /* Cambia este color para el texto dentro de las celdas */
+text-align: center;
+padding: 10px;
+border: 1px solid #000000;
+color: #000000; /* Cambia este color para el texto dentro de las celdas */
 }
 
 th {
-  background-color: #f07400;
-  color: rgb(255, 255, 255); /* Cambia este color para el texto del encabezado */
-  font-weight: bold;
+background-color: #f07400;
+color: rgb(255, 255, 255); /* Cambia este color para el texto del encabezado */
+font-weight: bold;
 }
 
 td input, td select {
-  width: 100%;
-  padding: 1px;
-  border: 1px solid #000000;
-  border-radius: 1px;
-  text-align: center;
-  color: #d4d3d3; /* Cambia este color para el texto dentro de los inputs/selects */
+width: 100%;
+padding: 1px;
+border: 1px solid #000000;
+border-radius: 1px;
+text-align: center;
+color: #d4d3d3; /* Cambia este color para el texto dentro de los inputs/selects */
 }
 
 
 
 .gastos-diarios  tr:hover {
-  background-color: #ec650a; /*El efecto hover se aprecia al pasar el cursor entre las celdas */
+background-color: #ec650a; /*El efecto hover se aprecia al pasar el cursor entre las celdas */
 }
