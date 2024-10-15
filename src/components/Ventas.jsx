@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { db } from "../firebase-config"; // Asegúrate de que tienes la referencia a Firestore
 import { addDoc, collection } from "firebase/firestore"; // Importa addDoc y collection
 import { auth } from "../firebase-config"; // Asegúrate de que tienes la referencia a Firebase Auth
+import "../components.css/style.css";
 
 const Ventas = () => {
   const [productos, setProductos] = useState([
@@ -143,6 +144,7 @@ const Ventas = () => {
         </tbody>
       </table>
       <button onClick={agregarVenta}>Agregar Venta</button>
+      
       <button onClick={handleRegistrarVenta}>Registrar Venta</button>
     </div>
   );
