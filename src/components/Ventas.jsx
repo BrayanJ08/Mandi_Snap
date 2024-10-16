@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { db } from "../firebase-config"; // Asegúrate de que tienes la referencia a Firestore
-import { addDoc, collection } from "firebase/firestore"; // Importa addDoc y collection
-import { auth } from "../firebase-config"; // Asegúrate de que tienes la referencia a Firebase Auth
+import { db } from "../firebase-config";
+import { addDoc, collection } from "firebase/firestore";
+import { auth } from "../firebase-config";
+import "../components.css/ventas.css";
+import "../components.css/navbar.css";
 
 const Ventas = () => {
   const [productos, setProductos] = useState([
@@ -18,18 +20,18 @@ const Ventas = () => {
     { producto: null, cantidad: 0, total: 0 },
   ]);
   const [totalVentas, setTotalVentas] = useState(0);
-  const [usuarioId, setUsuarioId] = useState(""); // ID del usuario que realiza la compra
+  const [usuarioId, setUsuarioId] = useState("");
 
   useEffect(() => {
-    const user = auth.currentUser; // Obtiene el usuario autenticado
+    const user = auth.currentUser;
     if (user) {
-      setUsuarioId(user.uid); // Almacena el ID del usuario
+      setUsuarioId(user.uid); // Store the user ID
     }
   }, []);
 
   const handleProductoChange = (index, producto) => {
     const nuevosVentas = [...ventas];
-    nuevosVentas[index] = { producto, cantidad: 0, total: 0 }; // Reiniciar total al cambiar el producto
+    nuevosVentas[index] = { producto, cantidad: 0, total: 0 };
     setVentas(nuevosVentas);
   };
 
@@ -54,20 +56,18 @@ const Ventas = () => {
   };
 
   const agregarVenta = () => {
-    // Limpiar los valores de las casillas
     const nuevaVenta = { producto: null, cantidad: 0, total: 0 };
-    setVentas([nuevaVenta]); // Reinicia la lista de ventas a una nueva venta vacía
-    setTotalVentas(0); // Reinicia el total de ventas
+    setVentas([nuevaVenta]);
+    setTotalVentas(0);
   };
 
   const handleRegistrarVenta = async () => {
     try {
-      // Asegurarse de que haya al menos una venta antes de registrar
       if (totalVentas > 0) {
         await addDoc(collection(db, "ventas"), {
-          usuarioId, // ID del usuario que realiza la compra
+          usuarioId,
           productos: ventas.map((venta) => ({
-            nombre: venta.producto?.nombre || "", // Asegura que nombre sea una cadena vacía si no hay producto
+            nombre: venta.producto?.nombre || "",
             cantidad: venta.cantidad,
             total: venta.total,
           })),
@@ -75,7 +75,7 @@ const Ventas = () => {
           fecha: new Date().toISOString(),
         });
         alert("Venta registrada correctamente");
-        agregarVenta(); // Llama a agregarVenta para limpiar el formulario después de registrar
+        agregarVenta();
       } else {
         alert("No hay ventas para registrar.");
       }
@@ -85,65 +85,77 @@ const Ventas = () => {
   };
 
   return (
-    <div className="ventas-diarios">
-      <h2>Ventas Diarias</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Producto</th>
-            <th>CANTIDAD</th>
-            <th>VALOR UNITARIO</th>
-            <th>TOTAL</th>
-          </tr>
-        </thead>
-        <tbody>
-          {ventas.map((venta, index) => (
-            <tr key={index}>
-              <td>
-                <select
-                  value={venta.producto ? venta.producto.nombre : ""}
-                  onChange={(e) =>
-                    handleProductoChange(
-                      index,
-                      productos.find(
-                        (producto) => producto.nombre === e.target.value
-                      )
-                    )
-                  }
-                >
-                  <option value="">Seleccione un producto</option>
-                  {productos.map((producto) => (
-                    <option key={producto.nombre} value={producto.nombre}>
-                      {producto.nombre}
-                    </option>
-                  ))}
-                </select>
-              </td>
-              <td>
-                <input
-                  type="number"
-                  value={venta.cantidad}
-                  onChange={(e) =>
-                    handleCantidadChange(index, parseInt(e.target.value))
-                  }
-                />
-              </td>
-              <td>{venta.producto ? venta.producto.valorUnitario : ""}</td>
-              <td>{venta.total}</td>
+    <div>
+      <div className="navbar">
+        <div className="logo">Mi Tienda</div>
+        <div className="menu">
+          <a href="/">Inicio</a>
+          <a href="/ventas">Ventas</a>
+          <a href="/inventario">Inventario</a>
+          <a href="/contacto">Contacto</a>
+        </div>
+      </div>
+
+      <div className="ventas-diarios">
+        <h2>Ventas Diarias</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>CANTIDAD</th>
+              <th>VALOR UNITARIO</th>
+              <th>TOTAL</th>
             </tr>
-          ))}
-          <tr>
-            <td>
-              <strong>Total</strong>
-            </td>
-            <td></td>
-            <td></td>
-            <td>{totalVentas}</td>
-          </tr>
-        </tbody>
-      </table>
-      <button onClick={agregarVenta}>Agregar Venta</button>
-      <button onClick={handleRegistrarVenta}>Registrar Venta</button>
+          </thead>
+          <tbody>
+            {ventas.map((venta, index) => (
+              <tr key={index}>
+                <td>
+                  <select
+                    value={venta.producto ? venta.producto.nombre : ""}
+                    onChange={(e) =>
+                      handleProductoChange(
+                        index,
+                        productos.find(
+                          (producto) => producto.nombre === e.target.value
+                        )
+                      )
+                    }
+                  >
+                    <option value="">Seleccione un producto</option>
+                    {productos.map((producto) => (
+                      <option key={producto.nombre} value={producto.nombre}>
+                        {producto.nombre}
+                      </option>
+                    ))}
+                  </select>
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    value={venta.cantidad}
+                    onChange={(e) =>
+                      handleCantidadChange(index, parseInt(e.target.value))
+                    }
+                  />
+                </td>
+                <td>{venta.producto ? venta.producto.valorUnitario : ""}</td>
+                <td>{venta.total}</td>
+              </tr>
+            ))}
+            <tr>
+              <td>
+                <strong>Total</strong>
+              </td>
+              <td></td>
+              <td></td>
+              <td>{totalVentas}</td>
+            </tr>
+          </tbody>
+        </table>
+        <button onClick={agregarVenta}>Agregar Venta</button>
+        <button onClick={handleRegistrarVenta}>Registrar Venta</button>
+      </div>
     </div>
   );
 };
