@@ -1,9 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { db } from "../firebase-config";
-import { addDoc, collection } from "firebase/firestore";
-import { auth } from "../firebase-config";
-import "../components.css/ventas.css";
-import "../components.css/navbar.css";
+
 
 const Ventas = () => {
   const [productos, setProductos] = useState([
@@ -151,11 +146,7 @@ const Ventas = () => {
               <td></td>
               <td>{totalVentas}</td>
             </tr>
-          </tbody>
-        </table>
-        <button onClick={agregarVenta}>Agregar Venta</button>
-        <button onClick={handleRegistrarVenta}>Registrar Venta</button>
-      </div>
+
     </div>
   );
 };
