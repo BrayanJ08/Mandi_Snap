@@ -25,7 +25,7 @@ const Ventas = () => {
   useEffect(() => {
     const user = auth.currentUser;
     if (user) {
-      setUsuarioId(user.uid); // Store the user ID
+      setUsuarioId(user.uid);
     }
   }, []);
 

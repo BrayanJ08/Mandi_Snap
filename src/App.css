@@ -10,7 +10,7 @@ body {
 }
 
 body {
-  flex: 1; /* Allow the content section to take up the available space */
+  flex: 1;
 }
 
 .home-page {
@@ -25,7 +25,7 @@ body {
   padding-bottom: 50px;
 }
 .content-section {
-  flex-grow: 1; /* This ensures that the content grows to fill the space above the footer */
+  flex-grow: 1;
 }
 
 .image-gallery {
