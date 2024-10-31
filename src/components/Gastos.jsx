@@ -7,7 +7,7 @@ import {
   deleteDoc,
   doc,
 } from "firebase/firestore";
-import { db } from "../firebase-config"; // Asegúrate de tener Firebase configurado
+import { db } from "../firebase-config"; 
 import "../App.css";
 
 const Inventario = () => {
@@ -19,10 +19,10 @@ const Inventario = () => {
   });
   const [editandoProducto, setEditandoProducto] = useState(null);
 
-  // Colección de Firestore donde se almacenan los productos
+  // Colección de Firestore para almacenar productos
   const productosCollectionRef = collection(db, "inventario");
 
-  // Cargar productos desde Firestore al cargar el componente
+  // Cargar productos desde Firestore 
   useEffect(() => {
     const obtenerProductos = async () => {
       const data = await getDocs(productosCollectionRef);
@@ -57,7 +57,7 @@ const Inventario = () => {
       const data = await getDocs(productosCollectionRef);
       setProductos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 
-      // Resetea el formulario
+      
       setNuevoProducto({ nombre: "", cantidad: "", valorUnitario: "" });
     }
   };
@@ -71,7 +71,7 @@ const Inventario = () => {
     setProductos(productos.filter((producto) => producto.id !== id));
   };
 
-  // Función para seleccionar un producto para editar
+  // Función para editar un producto 
   const seleccionarProductoParaEditar = (producto) => {
     setNuevoProducto({
       nombre: producto.nombre,
@@ -95,11 +95,11 @@ const Inventario = () => {
         total: total,
       });
 
-      // Actualiza la lista de productos después de editar
+      
       const data = await getDocs(productosCollectionRef);
       setProductos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 
-      // Resetea el formulario
+      
       setNuevoProducto({ nombre: "", cantidad: "", valorUnitario: "" });
       setEditandoProducto(null);
     }
