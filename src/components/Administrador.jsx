@@ -6,27 +6,30 @@ const Administrador = () => {
   const navigate = useNavigate(); // Define el hook de navegación
 
   const handleVerProductos = () => {
-    navigate("/productos");
+    navigate("/Productos");
   };
 
   const handleCerrarSesion = () => {
-    navigate("/login");
+    navigate("/Principal");
   };
 
-  const handleGastosClick = () => {
-    navigate("/gastos");
-  };
   const handleVentasClick = () => {
     navigate("/ventas");
   };
-
+  const handleInventario = () => {
+   navigate ("/inventario") 
+  };
+  const handleContactoClick = () => {
+    navigate("/contacto");
+  };
   return (
-    <div className="administrador-page">
+    <div>
+    <div className="page">
       <header>
         <nav>
           <ul>
             <li>
-              <button onClick={handleVerProductos}>Ver Productos</button>
+              <button onClick={handleContactoClick}>Contacto</button>
             </li>
             <li>
               <button onClick={handleCerrarSesion}>Cerrar Sesión</button>
@@ -35,14 +38,23 @@ const Administrador = () => {
         </nav>
         <h1>Mandy Snap</h1>
       </header>
+      
       <section>
         <h2>Administrador</h2>
         <div className="buttons">
-          <button onClick={handleGastosClick}>Gastos</button>
+          <button onClick={handleVerProductos}>Productos</button>
           <button onClick={handleVentasClick}>Ventas</button>
-          <button>Ingresos</button>
+          <button onClick={handleInventario}> Inventario</button>
+        </div>
+        <div>
+        <img
+              src="https://th.bing.com/th/id/OIP.wQFQco1izbZGsWcSyy9aUQHaHa?w=173&h=180&c=7&r=0&o=5&pid=1.7"
+              alt="Admin"
+              className='Admin'
+            />
         </div>
       </section>
+    </div>
     </div>
   );
 };

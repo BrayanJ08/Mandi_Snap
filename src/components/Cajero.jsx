@@ -4,21 +4,27 @@ import "../App.css";
 
 const Cajero = () => {
   const navigate = useNavigate();
-  const handleGastosClick = () => {
-    navigate("/gastos");
+
+  const handleVerProductos = () => {
+    navigate("/Productos");
   };
   const handleVentasClick = () => {
     navigate("/ventas");
   };
+  const handleContactoClick = () => {
+    navigate("/contacto");
+  };
+  const handleSalir = () => {
+  navigate("/Principal")
+  };
 
   return (
-    <div className="cajero-page">
+    <div className="page">
       <header>
         <nav>
           <ul>
-            <li><Link to="/productos">Ver Productos</Link></li>
-            <li><Link to="/login">Cerrar Sesión</Link></li>
-            {/* <li><a href="#">Contacto</a></li> */}
+            <button onClick={handleSalir}>Cerrar Sesion</button>
+            <button onClick={handleContactoClick}>Contacto</button>
           </ul>
         </nav>
         <h1>Mandi Snap</h1>
@@ -26,14 +32,16 @@ const Cajero = () => {
 
       <section>
         <h2>Cajero</h2>
-       {/*  <div className="image-gallery"> */}
-         {/*  <img src="https://www.simplyrecipes.com/thmb/nl9xnNJKGPdi5HlC-_80Z9hT1Ik=/2000x0/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Recipes-Pepperoni-Pizza-LEAD-11-b97cb3caa4d14cc7b8ff6e5323328e22.jpg" alt="Pizza" /> */}
-          {/* <img src="https://i.imgur.com/qMUeM60.jpg" alt="Salchipapas" /> */}
-       {/*  </div> */}
-
         <div className="buttons">
-          <button onClick={handleGastosClick}>Gastos</button>
+          <button onClick={handleVerProductos}>Productos</button>
           <button onClick={handleVentasClick}>Ventas</button>
+        </div>
+        <div>
+          <img
+              src="https://th.bing.com/th?q=Cajero+Supermercado+Dibujo&w=120&h=120&c=1&rs=1&qlt=90&cb=1&pid=InlineBlock&mkt=es-XL&cc=CO&setlang=es&adlt=strict&t=1&mw=247"
+              alt="Cajero"
+              className='Cajero'
+            />
         </div>
       </section>
     </div>
