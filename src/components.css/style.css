@@ -1,0 +1,15 @@
+
+  
+  .bancos-container {
+    display: flex;
+    gap: 20px;
+  }
+  
+
+  
+  .banco-logo {
+    width: 200px; /* Ajusta el tamaño de las imágenes según sea necesario */
+    height: auto;
+    margin-bottom: 10px;
+  }
+  

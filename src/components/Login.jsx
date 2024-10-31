@@ -93,9 +93,7 @@ const Login = () => {
         <h1></h1>
         <button onClick={handleRedirectToRegister}>Registrarse</button>
       </p>
-      <p>
-        <a href="#00">Recuperar la contraseña</a>
-      </p>
+
     </div>
   );
 };
