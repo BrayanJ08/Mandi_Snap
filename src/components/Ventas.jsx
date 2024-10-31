@@ -1,4 +1,9 @@
-
+import React, { useState, useEffect } from "react";
+import { db } from "../firebase-config";
+import { addDoc, collection } from "firebase/firestore";
+import { auth } from "../firebase-config";
+import "../components.css/ventas.css";
+import "../components.css/navbar.css";
 
 const Ventas = () => {
   const [productos, setProductos] = useState([
@@ -84,9 +89,8 @@ const Ventas = () => {
       <div className="navbar">
         <div className="logo">Mi Tienda</div>
         <div className="menu">
-          <a href="/">Inicio</a>
-          <a href="/ventas">Ventas</a>
-          <a href="/inventario">Inventario</a>
+          <a href="/cajero">Inicio</a>
+          <a href="/Productos">Productos</a>
           <a href="/contacto">Contacto</a>
         </div>
       </div>
@@ -146,7 +150,11 @@ const Ventas = () => {
               <td></td>
               <td>{totalVentas}</td>
             </tr>
-
+          </tbody>
+        </table>
+        <button onClick={agregarVenta}>Agregar Venta</button>
+        <button onClick={handleRegistrarVenta}>Registrar Venta</button>
+      </div>
     </div>
   );
 };

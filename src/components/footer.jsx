@@ -16,7 +16,7 @@ const Footer = () => {
             <a href="/privacy-policy">Politica de privacidad</a>
           </p>
           <p>
-            <a href="/about-us">Sobre nosotros</a>
+            <a href="/contacto">Sobre nosotros</a>
           </p>
         </div>
         <div className="social-icons">

@@ -61,3 +61,33 @@ body {
 .buttons button:hover {
   background-color: #2ecc71;
 }
+
+.Cajero {
+    padding: 10px;
+    width: 250px;
+    height: 250px;
+  
+}
+.Admin {
+  padding: 10px;
+  width: 250px;
+  height: 250px;
+
+}
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+}
+
+header nav ul {
+  display: flex;
+  gap: 10px;
+  list-style-type: none;
+  padding: 0;
+}
+
+
+
