@@ -15,7 +15,6 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      // Inicia sesión con Firebase Auth
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
@@ -23,7 +22,6 @@ const Login = () => {
       );
       const user = userCredential.user;
 
-      // Verifica el rol del usuario en Firestore
       const userDocRef = doc(db, "usuarios", user.uid);
       const userDoc = await getDoc(userDocRef);
 
@@ -31,10 +29,8 @@ const Login = () => {
         const userData = userDoc.data();
 
         if (userData.rol === "admin") {
-          // Redirige a la página de administrador
           navigate("/administrador");
         } else {
-          // Redirige a la página principal/cajero
           navigate("/cajero");
         }
       } else {

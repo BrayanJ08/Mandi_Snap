@@ -3,7 +3,7 @@ import "../App.css";
 
 const Contacto = () => {
   return (
-    <div className="contacto-page">
+    <div >
       <h1>Contacto</h1>
       <p>
         Bienvenido a Mandi Snap, una tienda dedicada a ofrecer las mejores opciones de comidas rápidas, ¡desde pizzas hasta deliciosas salchipapas! Nos enorgullece servirte productos frescos y de alta calidad. 

@@ -25,10 +25,9 @@ const Registro = () => {
       return;
     }
 
-    const tempUserId = `temp_${Date.now()}`; // Genera un ID temporal
+    const tempUserId = `temp_${Date.now()}`; 
 
     try {
-      // Intenta primero guardar la información en Firestore
       await setDoc(doc(db, "usuarios", tempUserId), {
         nombre,
         apellido,
@@ -37,7 +36,6 @@ const Registro = () => {
         rol: null,
       });
 
-      // Solo si no hubo errores en Firestore, se crea el usuario en Firebase Auth
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -45,7 +43,6 @@ const Registro = () => {
       );
       const user = userCredential.user;
 
-      // Almacenar la información completa en Firestore con el UID real
       await setDoc(doc(db, "usuarios", user.uid), {
         nombre,
         apellido,
@@ -54,12 +51,10 @@ const Registro = () => {
         rol: null,
       });
 
-      // Actualizar el perfil del usuario con nombre y apellido
       await updateProfile(user, {
         displayName: `${nombre} ${apellido}`,
       });
 
-      // Eliminar el documento temporal
       await deleteDoc(doc(db, "usuarios", tempUserId));
 
       alert("Usuario registrado correctamente");
@@ -67,7 +62,6 @@ const Registro = () => {
     } catch (error) {
       setError(error.message);
 
-      // Si ocurre un error, eliminar el documento temporal
       await deleteDoc(doc(db, "usuarios", tempUserId)).catch((err) => {
         console.error("Error al eliminar el documento temporal:", err);
       });
