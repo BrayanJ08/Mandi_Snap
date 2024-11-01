@@ -1,5 +1,5 @@
 import React from "react";
-import "../components.css/style.css" // Asegúrate de que este archivo contiene tus estilos
+import "../components.css/style.css" 
 
 const OpcionesPago = () => {
   const bancos = [

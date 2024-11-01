@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {collection,addDoc,getDocs,updateDoc,deleteDoc,doc,} from "firebase/firestore";
-import { db } from "../firebase-config"; // Asegúrate de tener Firebase configurado
+import { db } from "../firebase-config"; 
 import "../App.css";
 
 const Inventario = () => {
@@ -12,10 +12,8 @@ const Inventario = () => {
   });
   const [editandoProducto, setEditandoProducto] = useState(null);
 
-  // Colección de Firestore donde se almacenan los productos
   const productosCollectionRef = collection(db, "inventario");
 
-  // Cargar productos desde Firestore al cargar el componente
   useEffect(() => {
     const obtenerProductos = async () => {
       const data = await getDocs(productosCollectionRef);
@@ -24,7 +22,6 @@ const Inventario = () => {
     obtenerProductos();
   }, []);
 
-  // Función para manejar cambios en los campos de entrada
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNuevoProducto({
@@ -33,7 +30,6 @@ const Inventario = () => {
     });
   };
 
-  // Función para agregar un producto a Firestore
   const agregarProducto = async () => {
     const { nombre, cantidad, valorUnitario } = nuevoProducto;
 
@@ -46,25 +42,20 @@ const Inventario = () => {
         total: total,
       });
 
-      // Actualiza la lista de productos con el nuevo producto
       const data = await getDocs(productosCollectionRef);
       setProductos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 
-      // Resetea el formulario
       setNuevoProducto({ nombre: "", cantidad: "", valorUnitario: "" });
     }
   };
 
-  // Función para eliminar un producto de Firestore
   const eliminarProducto = async (id) => {
     const productoDoc = doc(db, "inventario", id);
     await deleteDoc(productoDoc);
 
-    // Actualiza la lista de productos después de eliminar
     setProductos(productos.filter((producto) => producto.id !== id));
   };
 
-  // Función para seleccionar un producto para editar
   const seleccionarProductoParaEditar = (producto) => {
     setNuevoProducto({
       nombre: producto.nombre,
@@ -74,7 +65,6 @@ const Inventario = () => {
     setEditandoProducto(producto.id);
   };
 
-  // Función para actualizar un producto en Firestore
   const actualizarProducto = async () => {
     if (editandoProducto) {
       const productoDoc = doc(db, "inventario", editandoProducto);
@@ -88,11 +78,10 @@ const Inventario = () => {
         total: total,
       });
 
-      // Actualiza la lista de productos después de editar
       const data = await getDocs(productosCollectionRef);
       setProductos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 
-      // Resetea el formulario
+
       setNuevoProducto({ nombre: "", cantidad: "", valorUnitario: "" });
       setEditandoProducto(null);
     }
