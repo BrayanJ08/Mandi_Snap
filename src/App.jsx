@@ -10,9 +10,9 @@ import Cajero from "./components/Cajero";
 import Gastos from "./components/Productos";
 import Ventas from "./components/Ventas";
 import Administrador from "./components/Administrador";
-import Contacto from "./components/Contacto"
-import Productos  from "./components/Productos"
-import Inventario from "./components/Inventario"
+import Contacto from "./components/Contacto";
+import Productos from "./components/Productos";
+import Inventario from "./components/Inventario";
 import OpcionesPago from "./components/Opciones_Pago";
 
 import "./App.css";
@@ -34,6 +34,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<Navigate to="/Principal" replace />} />
         <Route path="/Principal" element={<Principal />} />
         <Route path="/registro" element={<Registro />} />
         <Route path="/login" element={<Login />} />
@@ -45,9 +46,6 @@ function App() {
         <Route path="/Productos" element={<Productos />} />
         <Route path="/inventario" element={<Inventario />} />
         <Route path="/OpcionePago" element={<OpcionesPago />} />
-
-
-
       </Routes>
     </Router>
   );

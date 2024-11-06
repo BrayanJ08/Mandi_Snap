@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {collection,addDoc,getDocs,updateDoc,deleteDoc,doc,} from "firebase/firestore";
-import { db } from "../firebase-config"; // Asegúrate de tener Firebase configurado
+import { db } from "../firebase-config"; 
 import "../App.css";
 
 const Productos = () => {
@@ -12,10 +12,8 @@ const Productos = () => {
   });
   const [editandoProducto, setEditandoProducto] = useState(null);
 
-  // Colección de Firestore donde se almacenan los productos
   const productosCollectionRef = collection(db, "inventario");
 
-  // Cargar productos desde Firestore al cargar el componente
   useEffect(() => {
     const obtenerProductos = async () => {
       const data = await getDocs(productosCollectionRef);
